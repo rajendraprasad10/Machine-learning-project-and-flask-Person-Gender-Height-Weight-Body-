@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/styles.css"> -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+	<header>
+		<center>
+		<div class="container">
+		<div id="brandname">
+			Machine Learning App with Flask
+		</div>
+		<h3>Person Body Mass Prediction System Using ML Technique </h3>
+	</div>
+		</center>
+	</header>
+
+	<div class="ml-container">
+		<center>
+
+		<form action="{{ url_for('predict')}}" method="POST">
+		<p> Please Enter Required Values </p>
+		<!-- <input type="text" name="comment"/> -->
+			<input type="text" name="Gender Male(1), Female(0)" placeholder="Gender Male(1), Female(0)" required="required" />
+			<br/>
+			<br/>
+			<input type="text" name="Height" placeholder="Height" required="required" />
+			<br/>
+			<br/>
+			<input type="text" name="Weight" placeholder="Weight" required="required" />
+			<br/>
+			<br/>
+
+		<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+		
+	</form>
+		</center>
+	</div>
+
+		<p style="color:blue;font-size:20;text-align: center;"><b> Estimated Results For Above Values</b></p>
+		<div class="results">
+			<center>
+			{% if prediction == 5%}
+			<h4 style="color:green;">Extreme Obesity</h4>
+			{% elif prediction == 4%}
+			<h4 style="color:green;">Obesity</h4>
+			{% elif prediction == 3%}
+			<h4 style="color:red;">Overweight</h4>
+			{% elif prediction == 2%}
+			<h4 style="color:green;">Normal</h4>
+			{% elif prediction == 1%}
+			<h4 style="color:red;">Weak</h4>
+			{% elif prediction == 0%}
+			<h4 style="color:red;">Extremely Weak</h4>
+			{% endif %}
+			</center>
+		</div>
+</body>
+</html>
